@@ -2,6 +2,8 @@ package com.naul2k.schoolmanager.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -28,11 +30,9 @@ public class Lecturer {
     @Column(name = "phone_number", nullable = true, length = 20)
     private String phoneNumber;
 
-    @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted = false;
-
-
+   
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+    
 }

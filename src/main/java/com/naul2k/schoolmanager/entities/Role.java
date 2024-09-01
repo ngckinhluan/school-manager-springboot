@@ -21,10 +21,7 @@ public class Role {
     private String roleName;
     @Column(name = "role_description", nullable = true, unique = true, length = 255)
     private String roleDescription;
-    @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted = false;
-    // Default value is false
-    
+  
     // Navigation Properties
     @OneToMany(mappedBy = "role")
     private List<Lecturer> lecturers;

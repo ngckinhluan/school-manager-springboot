@@ -30,9 +30,7 @@ public class Student {
     @Column(name = "phone_number", nullable = true, length = 20)
     private String phoneNumber;
 
-    @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted = false;
-
+   
 
     // Navigation Properties
     @OneToMany(mappedBy = "student")

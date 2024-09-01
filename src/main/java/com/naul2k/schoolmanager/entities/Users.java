@@ -22,9 +22,6 @@ public class Users {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted = false;
-
     @ManyToOne
     @JoinColumn(name = "lecturer_id", nullable = false)
     private Lecturer lecturer;
