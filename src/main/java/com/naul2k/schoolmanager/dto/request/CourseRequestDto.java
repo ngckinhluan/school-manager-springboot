@@ -7,9 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CourseRequestDto {
-    @Column(name = "course_name", nullable = false, length = 100)
     private String courseName;
-
-    @Column(name = "course_description", nullable = true, length = 255)
     private String courseDescription;
 }

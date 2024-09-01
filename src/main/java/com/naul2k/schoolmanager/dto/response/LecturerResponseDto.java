@@ -7,5 +7,4 @@ public class LecturerResponseDto {
     private String email;
     private String phoneNumber;
 
-    // Getters and setters
 }
