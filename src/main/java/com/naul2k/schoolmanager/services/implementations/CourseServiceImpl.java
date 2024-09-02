@@ -31,6 +31,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseResponseDto> getCourseByName(String courseName) {
+        List<Course> courses = courseRepository.findCourseByCourseName(courseName);
+        return courses.stream().map((CourseMapper::toCourseResponseDto))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public CourseResponseDto getCourseById(Integer courseId) {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(

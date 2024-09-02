@@ -2,7 +2,6 @@ package com.naul2k.schoolmanager.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 
 @Getter

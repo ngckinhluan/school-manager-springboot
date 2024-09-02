@@ -31,6 +31,4 @@ public class Enrollment {
 
     @Column(name = "status", nullable = false, length = 20)
     private String status;
-
-    
 }

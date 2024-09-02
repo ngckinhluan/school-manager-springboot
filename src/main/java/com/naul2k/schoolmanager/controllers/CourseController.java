@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/courses")
+@RequestMapping("/api/course")
 @Tag(name = "Course", description = "APIs for managing courses")
 public class CourseController {
     private final CourseService courseService;
@@ -32,6 +32,12 @@ public class CourseController {
     public ResponseEntity<CourseResponseDto> getCourseById(@PathVariable("id") Integer courseId) {
         CourseResponseDto course = courseService.getCourseById(courseId);
         return new ResponseEntity<>(course, HttpStatus.OK);
+    }
+    
+    @GetMapping("/get-by-name")
+    public ResponseEntity<List<CourseResponseDto>> getCourseByName(@RequestParam String courseName) {
+        List<CourseResponseDto> courses = courseService.getCourseByName(courseName);
+        return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

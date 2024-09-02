@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CourseService {
     List<CourseResponseDto> getAllCourses();
+    List<CourseResponseDto> getCourseByName(String courseName);
     CourseResponseDto getCourseById(Integer courseId);
     void addCourse(CourseRequestDto courseRequestDto);
     void updateCourse(Integer courseId, CourseRequestDto courseRequestDto);
