@@ -26,11 +26,13 @@ public class Lecturer {
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
+    
+    @Column(name = "password", nullable = false, length = 100)
+    private String password;
 
     @Column(name = "phone_number", nullable = true, length = 20)
     private String phoneNumber;
 
-   
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;

@@ -1,7 +1,9 @@
 package com.naul2k.schoolmanager.entities;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.*;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class Course {
 
     @Column(name = "course_description", nullable = true, length = 255)
     private String courseDescription;
-
+    
     // Navigation Properties
     @OneToMany(mappedBy = "course")
     private List<Enrollment> enrollments;
