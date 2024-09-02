@@ -2,59 +2,51 @@ package com.naul2k.schoolmanager.controllers;
 
 import com.naul2k.schoolmanager.dto.request.CourseRequestDto;
 import com.naul2k.schoolmanager.dto.response.CourseResponseDto;
-import com.naul2k.schoolmanager.mapper.ICourseMapper;
-import com.naul2k.schoolmanager.services.interfaces.ICourseService;
+import com.naul2k.schoolmanager.services.interfaces.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/courses")
 public class CourseController {
+    private final CourseService courseService;
 
-    private final ICourseService _courseService;
-
-    public CourseController(ICourseService courseService) {
-        _courseService = courseService;
-    }
-
-    @PostMapping
-    public CompletableFuture<ResponseEntity<Void>> createCourse(@RequestBody CourseRequestDto courseRequestDto) {
-        return _courseService.createCourse(courseRequestDto)
-                .thenApply(result -> ResponseEntity.status(HttpStatus.CREATED).build());
-    }
-
-    @GetMapping("/{id}")
-    public CompletableFuture<ResponseEntity<CourseResponseDto>> getCourseById(@PathVariable("id") Integer courseId) {
-        return _courseService.getCourseById(courseId)
-                .thenApply(courseDto -> {
-                    if (courseDto != null) {
-                        return ResponseEntity.ok(courseDto);
-                    } else {
-                        return ResponseEntity.notFound().build();
-                    }
-                });
-    }
-
-    @PutMapping("/{id}")
-    public CompletableFuture<ResponseEntity<Void>> updateCourse(@PathVariable("id") Integer courseId,
-                                                                @RequestBody CourseRequestDto courseRequestDto) {
-        return _courseService.updateCourse(courseId, courseRequestDto)
-                .thenApply(result -> ResponseEntity.noContent().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public CompletableFuture<ResponseEntity<Void>> deleteCourse(@PathVariable("id") Integer courseId) {
-        return _courseService.deleteCourse(courseId)
-                .thenApply(result -> ResponseEntity.noContent().build());
+    @Autowired
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
     }
 
     @GetMapping
-    public CompletableFuture<ResponseEntity<List<CourseResponseDto>>> getAllCourses() {
-        return _courseService.getAllCourses()
-                .thenApply(courseDtos -> ResponseEntity.ok(courseDtos));
+    public ResponseEntity<List<CourseResponseDto>> getAllCourses() {
+        List<CourseResponseDto> courses = courseService.getAllCourses();
+        return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CourseResponseDto> getCourseById(@PathVariable("id") Integer courseId) {
+        CourseResponseDto course = courseService.getCourseById(courseId);
+        return new ResponseEntity<>(course, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateCourse(@PathVariable Integer id, @RequestBody CourseRequestDto courseRequestDto) {
+        courseService.updateCourse(id, courseRequestDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> addCourse(@RequestBody CourseRequestDto courseRequestDto) {
+        courseService.addCourse(courseRequestDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable Integer id) {
+        courseService.deleteCourse(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
