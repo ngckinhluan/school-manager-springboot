@@ -1,4 +1,4 @@
-﻿package com.naul2k.schoolmanager.config;
+package com.naul2k.schoolmanager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

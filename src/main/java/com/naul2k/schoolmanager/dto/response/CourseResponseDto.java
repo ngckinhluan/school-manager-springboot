@@ -1,9 +1,10 @@
 package com.naul2k.schoolmanager.dto.response;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseResponseDto {
 
     private Integer courseId;
