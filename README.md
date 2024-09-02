@@ -1,0 +1,1 @@
+[![School Manager CI with Maven (CI / CD applied).](https://github.com/ngckinhluan/school-manager-springboot/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ngckinhluan/school-manager-springboot/actions/workflows/maven.yml)
